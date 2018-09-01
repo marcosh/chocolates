@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  
+  postgres:
+    image: postgres:10.5-alpine
+    container_name: chocolates-postgres
+    environment:
+      - POSTGRES_USER=marcosh
+      - POSTGRES_PASSWORD=marcosh
+      - POSTGRES_DB=chocolates
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - default
+
+  pgadmin:
+    image: dpage/pgadmin4:3.2
+    container_name: chocolates-pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=marcosh@marcosh.com
+      - PGADMIN_DEFAULT_PASSWORD=password
+    links:
+      - postgres:postgres
+    depends_on:
+      - postgres
+    ports:
+      - 80:80
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
