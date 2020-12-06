@@ -26,6 +26,8 @@ services:
       - postgres:postgres
     depends_on:
       - postgres
+    volumes:
+      - ./dump:/dump
     ports:
       - 80:80
     networks:

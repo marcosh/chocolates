@@ -23,3 +23,11 @@ If not present, add a new server with hostname `postgres`, username `marcosh` an
 ## DUMP
 
 In the `dump` folder, there is the dump of the initial version of this collection when it was firts imported in postgres
+
+### replicate database
+
+```bash
+docker-compose exec pgadmin sh
+
+pg_dump -h postgres -d chocolates -U marcosh >> /dump/<filename>.sql
+```
