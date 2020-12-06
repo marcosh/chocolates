@@ -26,8 +26,18 @@ In the `dump` folder, there is the dump of the initial version of this collectio
 
 ### replicate database
 
+Dump schema and data with
+
 ```bash
 docker-compose exec pgadmin sh
 
 pg_dump -h postgres -d chocolates -U marcosh >> /dump/<filename>.sql
+```
+
+Restore data with
+
+```
+docker-compose exec pgadmin sh
+
+psql -h postgres -U marcosh chocolates < /dump/<filename>.sql
 ```
